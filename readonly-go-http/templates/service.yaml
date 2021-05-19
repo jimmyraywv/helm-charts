@@ -3,7 +3,7 @@ apiVersion: v1
 metadata:
   name: {{ .Values.service.name }}
   namespace: {{ .Values.service.namespace }}
-  labels: {{ .Values.service.labels }}
+  labels: {{ toYaml .Values.service.labels | nindent 4 }}
 spec:
   ports:
     - port: {{ .Values.service.port }}
@@ -11,5 +11,5 @@ spec:
       protocol: TCP
       name: http
   type: {{ .Values.service.type }}
-  selector: {{ .Values.service.selector }}
+  selector: {{ toYaml .Values.service.selector | nindent 4 }}
   

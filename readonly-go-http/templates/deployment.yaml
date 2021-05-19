@@ -3,11 +3,11 @@ kind: Deployment
 metadata:  
   name: {{ .Values.deployment.name }} 
   namespace: {{ .Values.deployment.namespace }}
-  labels: {{ .Values.deployment.labels }}
+  labels: {{ toYaml .Values.deployment.labels | nindent 4 }}
 spec: 
   revisionHistoryLimit: {{ .Values.deployment.revisionHistoryLimit }}
   selector:  
-    matchLabels: {{ .Values.deployment.matchLabels }}
+    matchLabels: {{ toYaml .Values.deployment.matchLabels | nindent 6 }}
   replicas: {{ .Values.deployment.replicaCount }}
   strategy:  
     type: RollingUpdate  
@@ -16,18 +16,18 @@ spec:
       maxUnavailable: 1 
   template:  
     metadata:  
-      labels: {{ .Values.deployment.podTemplateLabels }}
+      labels: {{ toYaml .Values.deployment.podTemplateLabels | nindent 8 }}
     spec:  
-      securityContext: {{ .Values.deployment.podSecurityContext }}
+      securityContext: {{ toYaml .Values.deployment.podSecurityContext | nindent 8 }}
       containers:  
       - name: {{ .Values.deployment.containerName }} 
         image: {{ .Values.deployment.image.repository }}:{{ .Values.deployment.image.tag }}
         imagePullPolicy: IfNotPresent
-        securityContext: {{ .Values.deployment.securityContext }}
-        resources: {{ .Values.deployment.resource }} 
-        readinessProbe: {{ .Values.readinessProbe }} 
-        livenessProbe: {{ .Values.deployment.livenessProbe }}
-        ports: {{ .Values.deployment.ports }}
+        securityContext: {{ toYaml .Values.deployment.securityContext | nindent 10 }}
+        resources: {{ toYaml .Values.deployment.resources | nindent 10 }} 
+        readinessProbe: {{ toYaml .Values.deployment.readinessProbe | nindent 10 }} 
+        livenessProbe: {{ toYaml .Values.deployment.livenessProbe | nindent 10 }}
+        ports: {{ toYaml .Values.deployment.ports | nindent 10 }}
         volumeMounts:
           - mountPath: /tmp
             name: tmp

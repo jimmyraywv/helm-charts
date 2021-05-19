@@ -18,7 +18,7 @@ deployment:
   labels: {owner: "jimmy", env: "dev", app: "readonly"}
   matchLabels: {app: "readonly"}
   revisionHistoryLimit: 3
-  podSecurityContext: {fsGroup: "2000"}
+  podSecurityContext: {fsGroup: 2000}
   replicaCount: 3
   podTemplateLabels: {owner: "jimmy", env: "dev", app: "readonly"}
   containerName: readonly
@@ -56,7 +56,7 @@ deployment:
   #     port: 8080
   #   initialDelaySeconds: 15
   #   periodSeconds: 20
-  ports: {containerPort: 8080}
+  ports: [containerPort: 8080]
   # ports:  
   # - containerPort: 8080
 
