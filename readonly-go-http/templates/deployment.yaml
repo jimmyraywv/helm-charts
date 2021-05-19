@@ -1,0 +1,36 @@
+apiVersion: apps/v1  
+kind: Deployment  
+metadata:  
+  name: {{deployment.name}} 
+  namespace: {{deployment.namespace}}
+  labels: {{deployment.labels}}
+spec: 
+  revisionHistoryLimit: {{deployment.revisionHistoryLimit}}
+  selector:  
+    matchLabels: {{deployment.matchLabels}}
+  replicas: {{deployment.replicaCount}}
+  strategy:  
+    type: RollingUpdate  
+    rollingUpdate:  
+      maxSurge: 5  
+      maxUnavailable: 1 
+  template:  
+    metadata:  
+      labels: {{deployment.podTemplateLabels}}
+    spec:  
+      securityContext: {{deployment.podSecurityContext}}
+      containers:  
+      - name: {{deployment.containerName}} 
+        image: {{deployment.image.repository}}:{{deployment.image.tag}}
+        imagePullPolicy: IfNotPresent
+        securityContext: {{deployment.securityContext}}
+        resources: {{deployment.resource}} 
+        readinessProbe: {{deployment.readinessProbe}} 
+        livenessProbe: {{deployment.livenessProbe}}
+        ports: {{deployment.ports}}
+        volumeMounts:
+          - mountPath: /tmp
+            name: tmp
+      volumes:
+      - name: tmp
+        emptyDir: {}

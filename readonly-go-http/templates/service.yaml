@@ -1,0 +1,15 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: {{service.name}}
+  namespace: {{service.namespace}}
+  labels: {{service.labels}}
+spec:
+  ports:
+    - port: {{service.port}}
+      targetPort: {{service.targetPort}}
+      protocol: TCP
+      name: http
+  type: {{service.type}}
+  selector: {{service.selector}}
+  
