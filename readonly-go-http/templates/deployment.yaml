@@ -1,14 +1,14 @@
 apiVersion: apps/v1  
 kind: Deployment  
 metadata:  
-  name: {{deployment.name}} 
-  namespace: {{deployment.namespace}}
-  labels: {{deployment.labels}}
+  name: {{ .Values.deployment.name }} 
+  namespace: {{ .Values.deployment.namespace }}
+  labels: {{ .Values.deployment.labels }}
 spec: 
-  revisionHistoryLimit: {{deployment.revisionHistoryLimit}}
+  revisionHistoryLimit: {{ .Values.deployment.revisionHistoryLimit }}
   selector:  
-    matchLabels: {{deployment.matchLabels}}
-  replicas: {{deployment.replicaCount}}
+    matchLabels: {{ .Values.deployment.matchLabels }}
+  replicas: {{ .Values.deployment.replicaCount }}
   strategy:  
     type: RollingUpdate  
     rollingUpdate:  
@@ -16,18 +16,18 @@ spec:
       maxUnavailable: 1 
   template:  
     metadata:  
-      labels: {{deployment.podTemplateLabels}}
+      labels: {{ .Values.deployment.podTemplateLabels }}
     spec:  
-      securityContext: {{deployment.podSecurityContext}}
+      securityContext: {{ .Values.deployment.podSecurityContext }}
       containers:  
-      - name: {{deployment.containerName}} 
-        image: {{deployment.image.repository}}:{{deployment.image.tag}}
+      - name: {{ .Values.deployment.containerName }} 
+        image: {{ .Values.deployment.image.repository }}:{{ .Values.deployment.image.tag }}
         imagePullPolicy: IfNotPresent
-        securityContext: {{deployment.securityContext}}
-        resources: {{deployment.resource}} 
-        readinessProbe: {{deployment.readinessProbe}} 
-        livenessProbe: {{deployment.livenessProbe}}
-        ports: {{deployment.ports}}
+        securityContext: {{ .Values.deployment.securityContext }}
+        resources: {{ .Values.deployment.resource }} 
+        readinessProbe: {{ .Values.readinessProbe }} 
+        livenessProbe: {{ .Values.deployment.livenessProbe }}
+        ports: {{ .Values.deployment.ports }}
         volumeMounts:
           - mountPath: /tmp
             name: tmp
