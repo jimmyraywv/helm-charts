@@ -1,0 +1,24 @@
+apiVersion: v1
+entries:
+  readonly-go-http:
+  - apiVersion: v2
+    appVersion: 0.1.1
+    created: "2021-05-21T15:03:55.417154-04:00"
+    description: A Helm chart for Kubernetes
+    digest: 06b83826c77436ffbd3a70684997290385e95e6cb007f0056ac13eb2603f1e9f
+    name: readonly-go-http
+    type: application
+    urls:
+    - https://github.com/jimmyraywv/helm-charts/releases/download/readonly-go-http-0.1.1/readonly-go-http-0.1.1.tgz
+    version: 0.1.1
+  - apiVersion: v2
+    appVersion: 0.1.0
+    created: "2021-05-19T12:05:34.2766-04:00"
+    description: A Helm chart for Kubernetes
+    digest: 0e754f21e7debab2da291929ea4595b565706c8eed088fa677c59c6b5392a273
+    name: readonly-go-http
+    type: application
+    urls:
+    - https://github.com/jimmyraywv/helm-charts/releases/download/readonly-go-http-0.1.0/readonly-go-http-0.1.0.tgz
+    version: 0.1.0
+generated: "2021-05-21T15:03:55.417194-04:00"
