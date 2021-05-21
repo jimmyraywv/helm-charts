@@ -4,6 +4,10 @@ metadata:
   name: {{ .Values.service.name }}
   namespace: {{ .Values.service.namespace }}
   labels: {{ toYaml .Values.service.labels | nindent 4 }}
+  {{- if .Values.service.annotations }}
+  annotations:
+    {{- toYaml .Values.service.annotations | nindent 4 }}
+  {{- end }}
 spec:
   ports:
     - port: {{ .Values.service.port }}
