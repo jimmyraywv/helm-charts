@@ -1,8 +1,4 @@
 
-namespace:
-  name: readonly
-  labels: {owner: "jimmy",env: "dev",app: "readonly"}
-
 service:
   name: readonly
   namespace: readonly
