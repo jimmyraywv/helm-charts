@@ -1,0 +1,20 @@
+helm package readonly-go-http -d .deploy
+helm repo index .deploy --merge .deploy/index.yaml --url https://github.com/jimmyraywv/helm-charts/releases/download/readonly-go-http-0.1.2
+
+https://github.com/helm/chart-releaser
+
+export CR_OWNER=myaccount
+export CR_GIT_REPO=helm-charts
+export CR_PACKAGE_PATH=.deploy
+export CR_TOKEN="123456789"
+export CR_GIT_BASE_URL="https://api.github.com/"
+export CR_GIT_UPLOAD_URL="https://uploads.github.com/
+
+owner: myaccount
+git-repo: helm-charts
+package-path: .deploy
+token: 123456789
+git-base-url: https://api.github.com/
+git-upload-url: https://uploads.github.com/
+
+cr upload --config .deploy/cr-config.yaml
